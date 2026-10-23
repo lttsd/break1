@@ -8,9 +8,9 @@
 	},
 	"id": "yo.break-reminder",
 	"name": "Break Reminder",
-	"version": "v1.0.0",
+	"version": "v1.1.0",
 	"developer": "Yo",
-	"description": "Shows a popup reminding you to take a break after a configurable amount of play time.",
+	"description": "Shows a popup reminding you to take a break after a configurable amount of play time. Includes a daily play time button on the main menu.",
 	"settings": {
 		"interval-minutes": {
 			"type": "int",
@@ -30,8 +30,54 @@
 		"wait-for-pause": {
 			"type": "bool",
 			"name": "Wait for pause inside levels",
-			"description": "If the time is up while you are playing a level, wait until you pause (or leave the level) before showing the popup, so it never interrupts a run.",
+			"description": "If the time is up while you are playing a level, wait before showing the popup so it never interrupts a run.",
 			"default": true
+		},
+		"show-on-death-or-complete": {
+			"type": "bool",
+			"name": "Show on death or level complete",
+			"description": "Only applies if \"Wait for pause inside levels\" is on. When the time is up inside a level, the popup appears when you complete the level, or right after you die (the game pauses on respawn and shows it). If off, it waits until you pause manually or leave the level.",
+			"default": true
+		},
+		"ignore-idle": {
+			"type": "bool",
+			"name": "Don't count idle time",
+			"description": "Time doesn't count while the game is not the active window, or while you haven't touched the keyboard or mouse for the idle time below (Windows only).",
+			"default": true
+		},
+		"idle-minutes": {
+			"type": "int",
+			"name": "Idle time (minutes)",
+			"description": "After this many minutes without keyboard or mouse input, the time stops counting. Only used if \"Don't count idle time\" is on.",
+			"default": 3,
+			"min": 1,
+			"max": 30,
+			"control": {
+				"arrows": true,
+				"arrow-step": 1,
+				"slider": true,
+				"slider-step": 1,
+				"input": true
+			}
+		},
+		"language": {
+			"type": "string",
+			"name": "Language",
+			"description": "Language of the popup texts and the main menu button.",
+			"default": "English",
+			"one-of": ["English", "Spanish"]
+		},
+		"custom-title": {
+			"type": "string",
+			"name": "Custom popup title",
+			"description": "Leave empty to use the default title.",
+			"default": ""
+		},
+		"custom-message": {
+			"type": "string",
+			"name": "Custom popup message",
+			"description": "Leave empty to use the default message. You can use {time} (time played since opening the game), {today} (time played today) and \\n for a new line. Colors like <cy>text</c> also work.",
+			"default": ""
 		}
 	}
 }
